@@ -29,6 +29,7 @@ router.register('Plat', PlatViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
+    path('backend/', include('backend.urls')),
 ]
 
 if settings.DEBUG:
