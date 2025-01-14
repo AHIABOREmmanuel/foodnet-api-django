@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(69g%o_7hnuutx6st4&khys*82tp+z&e7woi^*+w*#92a!w075'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['lenuel.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -77,17 +80,20 @@ WSGI_APPLICATION = 'foodnet.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-       'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'food',
-        'USER': 'postgres',
-        'PASSWORD': '92596583',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#        'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'food',
+#         'USER': 'postgres',
+#         'PASSWORD': '92596583',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 
+DATABASES = {
+       'default': dj_database_url.parse(os.config('DATABASE_URL'))
+}
 
 
 # Password validation
