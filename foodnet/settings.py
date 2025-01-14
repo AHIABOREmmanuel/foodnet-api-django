@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from decouple import config
+from dotenv import load_dotenv
 import dj_database_url
 
 
@@ -91,8 +92,10 @@ WSGI_APPLICATION = 'foodnet.wsgi.application'
 #     }
 # }
 
+load_dotenv()
+
 DATABASES = {
-       'default': dj_database_url.parse(os.config('DATABASE_URL'))
+    'default': dj_database_url.parse(config('DATABASE_URL'))
 }
 
 
