@@ -20,8 +20,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import routers
 from api.views import*
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
+# from drf_yasg.views import get_schema_view
+# from drf_yasg import openapi
 
 
 
@@ -30,22 +30,22 @@ router.register('Categorie', CategorieViewSet)
 router.register('Plat', PlatViewSet)
 
 
-schema_view = get_schema_view(
- openapi.Info(
-     title="API Documentation",
-     default_version='v1',
-     contact=openapi.Contact(email="contact@example.com"),
- ),
- public=True,
-)
+# schema_view = get_schema_view(
+#  openapi.Info(
+#      title="API Documentation",
+#      default_version='v1',
+#      contact=openapi.Contact(email="contact@example.com"),
+#  ),
+#  public=True,
+# )
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('/', include(router.urls)),
     path('backend/', include('backend.urls')),
-    path('', schema_view.with_ui('swagger', cache_timeout=0), name='swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='redoc'),
+    # path('', schema_view.with_ui('swagger', cache_timeout=0), name='swagger-ui'),
+    # path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='redoc'),
 ]
 
 if settings.DEBUG:
